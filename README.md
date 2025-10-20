@@ -50,15 +50,14 @@ Learning something new can be overwhelming — too many courses, tutorials, and 
 
 ## 📁 Project Structure
 SkillForge/
-│
-├── app.py # Flask backend (main API)
-├── templates/
-│ └── index.html # User interface
-├── static/
-│ ├── script.js # Handles frontend logic & API calls
-│ └── style.css # UI styling
-├── requirements.txt # Python dependencies
-└── README.md # Project documentation
+ app.py # Flask backend (main API)
+templates/
+index.html # User interface
+static/
+script.js # Handles frontend logic & API calls
+style.css # UI styling
+requirements.txt # Python dependencies
+README.md # Project documentation
 
 🚧 Future Enhancements
 
