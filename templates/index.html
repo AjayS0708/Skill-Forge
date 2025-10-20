@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SkillForge ⚡</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css', v='20251015') }}">
+  <link rel="preconnect" href="https://cdn.jsdelivr.net">
+  <script defer src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/chart.js@4.4.6/dist/chart.umd.min.js"></script>
+</head>
+<body>
+  <div class="bg-gradient"></div>
+  <main class="container">
+    <header class="header">
+      <div class="brand">
+        <div class="logo">⚡</div>
+        <h1>SkillForge</h1>
+      </div>
+      <p class="tagline">Generate beautiful, comprehensive learning roadmaps for any topic.</p>
+    </header>
+
+    <div class="layout">
+      <aside class="sidebar">
+        <div class="panel">
+          <h3>Recent topics</h3>
+          <div class="history-actions">
+            <button id="clearHistoryBtn" class="secondary small">Clear</button>
+          </div>
+          <div id="historyList" class="history-list"></div>
+        </div>
+        <div class="panel">
+          <h3>Presets</h3>
+          <div class="presets" id="presets"></div>
+        </div>
+      </aside>
+
+      <section class="main">
+        <section class="controls">
+          <div class="input-group">
+            <input type="text" id="topicInput" placeholder="e.g. Data Structures, React, GenAI basics">
+            <button id="generateBtn">Generate</button>
+          </div>
+          <div id="suggestions" class="suggestions hidden"></div>
+          <div class="control-bar">
+            <label>
+              <span>Model</span>
+              <select id="modelSelect">
+                <option value="auto" selected>Auto</option>
+                <option value="pro">Gemini 2.5 Pro</option>
+                <option value="flash">Gemini 2.5 Flash</option>
+              </select>
+            </label>
+            <label>
+              <span>Length</span>
+              <select id="lengthSelect">
+                <option value="short">Short</option>
+                <option value="medium" selected>Medium</option>
+                <option value="long">Long</option>
+                <option value="very_long">Very long</option>
+              </select>
+            </label>
+            <div class="toolbar">
+              <button id="copyBtn" class="secondary">Copy Markdown</button>
+              <button id="downloadBtn" class="secondary">Download .md</button>
+              <button id="clearBtn" class="secondary">Clear</button>
+              <button id="shareBtn" class="secondary">Share</button>
+              <label class="theme-toggle">
+                <input type="checkbox" id="themeToggle">
+                <span>Dark mode</span>
+              </label>
+            </div>
+          </div>
+          <small class="hint">Press Enter to generate. Your key stays on-device.</small>
+        </section>
+
+        <div class="tabs">
+          <button class="tab active" id="tabMarkdown">Markdown</button>
+          <button class="tab" id="tabOutline">Outline</button>
+        </div>
+        <section id="output" class="output-box empty">
+          <article class="markdown-body" id="markdownView">
+            <div class="placeholder">Your roadmap will appear here.</div>
+          </article>
+          <article class="markdown-body hidden" id="outlineView">
+            <div class="placeholder">Switch to Markdown and generate to see outline.</div>
+          </article>
+        </section>
+
+        <section class="viz-box">
+          <div style="display:flex;align-items:center;justify-content:space-between;gap:12px;">
+            <h3 class="viz-title">Demand comparison</h3>
+            <div style="display:flex;gap:8px;align-items:center;">
+              <label style="font-size:13px;color:var(--muted);">Chart</label>
+              <select id="chartTypeSelect" style="padding:6px 8px;border-radius:8px;border:1px solid rgba(0,0,0,0.06)">
+                <option value="bar">Bar</option>
+                <option value="line">Line</option>
+                <option value="combo">Combo</option>
+              </select>
+            </div>
+          </div>
+          <div class="chart-row">
+            <canvas id="demandChart" height="140"></canvas>
+          </div>
+        </section>
+
+        <!-- Salary Insights (mock) -->
+        <section class="viz-box">
+          <div style="display:flex;align-items:center;justify-content:space-between;gap:12px;">
+            <h3 class="viz-title">Salary insights (India)</h3>
+            <div style="display:flex;gap:8px;align-items:center;">
+              <label style="font-size:13px;color:var(--muted);">Experience</label>
+              <select id="salaryExpSelect" style="padding:6px 8px;border-radius:8px;border:1px solid rgba(0,0,0,0.06)">
+                <option value="entry">Entry</option>
+                <option value="mid" selected>Mid</option>
+                <option value="senior">Senior</option>
+              </select>
+            </div>
+          </div>
+          <div class="chart-row">
+            <canvas id="salaryChart" height="160"></canvas>
+          </div>
+          <div class="salary-meta" style="margin-top:8px;font-size:13px;color:var(--muted);">
+            <span id="salarySummary">Select a topic and click Generate to view salary mock data for India.</span>
+          </div>
+        </section>
+
+        <footer class="footer">
+          <span>Built with Flask + Gemini</span>
+        </footer>
+      </section>
+    </div>
+  </main>
+  <div id="toastContainer" class="toast-container"></div>
+
+  <div id="spinner" class="spinner hidden"></div>
+  <script src="{{ url_for('static', filename='script.js', v='20251015') }}"></script>
+  </body>
+</html>
