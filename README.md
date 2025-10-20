@@ -1,6 +1,4 @@
-# Skill-Forge
-RoadMap Generator
-# 🚀 SkillForge – AI Learning Path Generator
+#🚀 SkillForge – AI Learning Path Generator
 
 **SkillForge** is an AI-powered web application that creates **personalized learning paths** for any topic — whether it’s *Data Analysis*, *Web Development*, or *Machine Learning*.  
 Powered by **Google Gemini AI**, SkillForge curates a step-by-step roadmap with **YouTube tutorials**, **free online resources**, and **project ideas** tailored to each user’s goal.
